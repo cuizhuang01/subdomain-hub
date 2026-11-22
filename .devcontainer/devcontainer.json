@@ -1,8 +1,13 @@
 {
   "name": "云子域 · 二级域名分发系统",
-  "build": { "dockerfile": "../Dockerfile", "context": ".." },
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
   "remoteUser": "appuser",
-  "forwardPorts": [8000],
+  "forwardPorts": [
+    8000
+  ],
   "portsAttributes": {
     "8000": {
       "label": "二级域名分发系统",
@@ -16,5 +21,7 @@
     "PORT": "8000"
   },
   "postCreateCommand": "mkdir -p /app/data",
-  "postAttachCommand": "bash run.sh"
+  "postAttachCommand": "bash run.sh",
+  "overrideCommand": true,
+  "postStartCommand": "mkdir -p /app/data"
 }
