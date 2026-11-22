@@ -8,14 +8,37 @@
 
 ---
 
-## 快速开始
+## 三种跑起来的方式
+
+> GitHub 只是代码托管，不会自动运行程序。下面任选一种即可把系统真正跑起来。
+
+### 方式一：本机直接跑（最快，无需 Docker）
 
 ```bash
+git clone https://github.com/cuizhuang01/subdomain-hub.git
 cd subdomain-hub
-./run.sh                 # 或：python3 -m uvicorn app.main:app --port 8000
+./run.sh                 # 自动装依赖并启动，等价于 python3 -m uvicorn app.main:app --port 8000
 ```
 
-打开 <http://127.0.0.1:8000> 即可使用；接口文档 <http://127.0.0.1:8000/docs>。
+启动后打开 <http://127.0.0.1:8000> 即可使用；接口文档 <http://127.0.0.1:8000/docs>。
+
+### 方式二：Docker（环境无关，推荐上线用）
+
+```bash
+docker compose up -d --build     # 或者：docker run -p 8000:8000 -v $(pwd)/data:/app/data subdomain-hub
+```
+
+数据保存在 `./data`，容器重建不丢；日志 `docker compose logs -f`。
+
+### 方式三：部署到公网（Render 免费，点一下就跑）
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/cuizhuang01/subdomain-hub)
+
+点击上面的按钮 → 用 GitHub 账号登录 Render → 确认 `render.yaml` → 等待 2~3 分钟，会得到一个 `https://subdomain-hub-xxx.onrender.com` 地址，直接打开就能用。
+
+> 免费实例空闲会休眠（再次访问需要等十几秒唤醒），且没有持久磁盘，重启会重置数据；只适合演示。正式用请选付费磁盘，或用任意一台云服务器 + 方式二。
+
+---
 
 | 角色 | 账号 | 密码 |
 |---|---|---|

@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    container_name: subdomain-hub
+    ports:
+      - "8000:8000"
+    environment:
+      # 生产环境请设置成固定的随机字符串，否则重启后登录态失效
+      SDH_SECRET_KEY: "${SDH_SECRET_KEY:-}"
+      SDH_DB: /app/data/app.db
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

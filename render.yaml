@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: subdomain-hub
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: SDH_SECRET_KEY
+        generateValue: true
+      # 免费实例没有持久磁盘，重启/重新部署会重置数据库；
+      # 升级到 paid 后可挂载 disk 保住 data/ 目录。

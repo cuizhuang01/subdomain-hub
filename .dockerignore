@@ -1,0 +1,7 @@
+.git
+data
+.bin
+screenshots
+__pycache__
+*.pyc
+.venv

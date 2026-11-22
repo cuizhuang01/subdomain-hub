@@ -21,3 +21,7 @@ data/*.log
 Thumbs.db
 .idea/
 .vscode/
+
+# 本地工具
+.bin/
+data/*.txt
