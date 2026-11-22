@@ -67,7 +67,7 @@ def main():
     r = requests.patch(f"{BASE}/api/domains/{did}", headers=H, json={"target_url": "https://example.net/new", "redirect_type": 301})
     check("修改跳转", r.json()["redirect_type"] == 301 and "example.net" in r.json()["target_url"])
     r2 = requests.get(f"{BASE}/t/{prefix}", allow_redirects=False)
-    check("301 生效", r2.status_code == 301)
+    check("301 生效", r2.status_code == 301, f"{r2.status_code} {r2.headers.get('location')}")
 
     r = requests.patch(f"{BASE}/api/domains/{did}", headers=H, json={"purpose": "dns"})
     check("切换为 DNS 托管", r.status_code == 200 and r.json()["purpose"] == "dns")

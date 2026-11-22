@@ -118,7 +118,8 @@ CREATE INDEX IF NOT EXISTS idx_dns_domain ON dns_records(domain_id);
 
 
 def _connect() -> sqlite3.Connection:
-    conn = sqlite3.connect(DB_PATH, check_same_thread=False, timeout=15)
+    # isolation_level=None => 自动提交：写操作立即落盘，避免"响应已返回但事务未提交"的读旧值竞态
+    conn = sqlite3.connect(DB_PATH, check_same_thread=False, timeout=15, isolation_level=None)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA foreign_keys=ON")
