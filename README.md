@@ -8,11 +8,18 @@
 
 ---
 
-## 三种跑起来的方式
+## 四种跑起来的方式
 
-> GitHub 只是代码托管，不会自动运行程序。下面任选一种即可把系统真正跑起来。
+> GitHub 只是代码托管，不会自动运行程序；想在 GitHub 上直接运行，用下面的「Codespaces」。
 
-### 方式一：本机直接跑（最快，无需 Docker）
+### 方式零：在 GitHub 上直接运行（Codespaces，免本地环境）
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/cuizhuang01/subdomain-hub)
+
+点开后 GitHub 会自动构建容器、装依赖并启动服务，然后把 **8000 端口**转发成一个公开网址（形如 `https://xxxx-8000.app.github.dev`，在端口面板里可看到并设为 Public）。
+个人账号每月有免费额度，闲置一段时间会自动休眠，适合演示与验收，不适合长期托管。
+
+### 方式一：本机直接跑（无需 Docker）
 
 ```bash
 git clone https://github.com/cuizhuang01/subdomain-hub.git

@@ -1,0 +1,20 @@
+{
+  "name": "云子域 · 二级域名分发系统",
+  "build": { "dockerfile": "../Dockerfile", "context": ".." },
+  "remoteUser": "appuser",
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": {
+      "label": "二级域名分发系统",
+      "onAutoForward": "openBrowser",
+      "visibility": "public"
+    }
+  },
+  "containerEnv": {
+    "SDH_SECRET_KEY": "codespaces-dev-secret-please-change",
+    "SDH_DB": "/app/data/app.db",
+    "PORT": "8000"
+  },
+  "postCreateCommand": "mkdir -p /app/data",
+  "postAttachCommand": "bash run.sh"
+}
